@@ -1,0 +1,8 @@
+curl -X POST -v 192.168.0.5:8081 \
+-F "character_name=nastyemk" \
+-F "character_class=monk" \
+-F "character_item_level=227" \
+-F "dungeon_name=DeOtherSide" \
+-F "dungeon_level=20" \
+-F "dungeon_reset_time=1284712938471" \
+-F "weekly_best=22"
