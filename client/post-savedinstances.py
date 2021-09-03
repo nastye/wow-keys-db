@@ -5,13 +5,7 @@ import watchdog.events
 import sys
 import logging
 import os
-
-if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-    abs_path = os.path.split(os.path.dirname(sys.executable))[0]
-else:
-    abs_path = os.path.abspath('..')
-file = 'SavedInstances.lua'
-file_path = os.path.join(abs_path, file)
+import configparser
 
 
 logger = logging.getLogger(__name__)
@@ -20,15 +14,34 @@ stdout_handler = logging.StreamHandler(sys.stdout)
 stdout_handler.setLevel(logging.INFO)
 logger.addHandler(stdout_handler)
 
-logger.info('watching ' + file_path)
+config = configparser.ConfigParser()
+try:
+    config.read('config.ini')
+    if not config['path_to_savedinstances_lua']:
+        if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+            abs_path = os.path.split(os.path.dirname(sys.executable))[0]
+        else:
+            abs_path = os.path.abspath('..')
+        file = 'SavedInstances.lua'
+        file_path = os.path.join(abs_path, file)
+        logger.info('no path to savedinstances.lua provided, using default: ', file_path)
+    else:
+        file_path = config['path_to_savedinstances_lua']
+        logger.info('path to savedinstances.lua: ', file_path)
+    if not config['server_url']:
+        raise Exception('no server_url provided')
+except Exception as e:
+    logger.error(e)
+
 if not os.path.exists(file_path):
+    logger.error('savedinstances.lua path does not exist, exitting')
     exit(1)
 
 
 def post_file():
     logger.info('posting in 5s')
     time.sleep(5)
-    logger.info(requests.post('https://keys.nastye.xyz/',
+    logger.info(requests.post(server_url,
                               files={file: open(file_path, 'rb')}).text)
 
 
