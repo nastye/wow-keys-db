@@ -24,7 +24,9 @@ find your executable in the `dist` folder.
 
 ### install
 
-extract archive into subfolder of your accounts savedvariables folder
-i.e. D:\games\World of Warcraft\_retail_\WTF\Account\401500458#1\SavedVariables\post-savedinstances
-right click install.bat, run as administrator
-hope keys show up on keys.nastye.xyz
+#### windows
+
+move files wherever you want them to live, make sure executable, install.bat and config.ini are hand-in-hand like a happy little family.
+double-check config.ini values.
+run install.bat as admin.
+hope keys show up at `server_url` configured in config.ini.
