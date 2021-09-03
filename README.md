@@ -10,6 +10,8 @@ pip install -r requirements.txt
 
 ## server
 
+just run `docker compose up -d` itll do all the things for you :)
+
 ## client
 
 ### build
