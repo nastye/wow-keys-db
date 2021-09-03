@@ -4,17 +4,9 @@ services:
     build:
       context: "."
       dockerfile: "Dockerfile"
-    image: "discord-bot:latest"
-    container_name: "discord-bot"
+    image: "wow-keys:latest"
+    container_name: "wow-keys"
     volumes:
-    - ./db:/var/opt/keys
-    networks:
-    - outside
-    environment:
-    - VIRTUAL_HOST=keys.nastye.xyz
-    - LETSENCRYPT_HOST=keys.nastye.xyz
-
-networks:
-  outside:
-    external: 
-      name: outside
+      - ./db:/var/opt/keys
+    ports:
+      - 8080:8080
