@@ -1,11 +1,10 @@
 version: "3.7"
 services:
-  discord-bot:
+  wow-keys:
     build:
       context: "."
       dockerfile: "Dockerfile"
     image: "wow-keys:latest"
-    container_name: "wow-keys"
     volumes:
       - ./db:/var/opt/keys
     ports:
