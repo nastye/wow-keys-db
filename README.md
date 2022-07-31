@@ -19,7 +19,7 @@ just run `docker compose up -d` itll do all the things for you :)
 if you want to redistribute this client to your friends (likely) you can use pyinstaller to compile it into an executable and share that with your friends:
 
 ```bash
-pyinstaller --onefile --no-console post-savedinstances.py
+pyinstaller --onefile --noconsole post-savedinstances.py
 ```
 
 find your executable in the `dist` folder.
