@@ -7,7 +7,6 @@ import logging
 import os
 import configparser
 
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 stdout_handler = logging.StreamHandler(sys.stdout)
@@ -57,7 +56,7 @@ def post_file():
 
 class PostingFileSystemEventHandler(watchdog.events.FileSystemEventHandler):
     def on_any_event(self, event):
-        if not event.is_directory and event.src_path.endswith(file):
+        if event.src_path.endswith(file):
             logger.info(event.src_path + ' ' + event.event_type)
             post_file()
 
@@ -66,7 +65,7 @@ post_file()
 
 file_observer = watchdog.observers.Observer()
 file_observer.schedule(PostingFileSystemEventHandler(),
-                       file_path, recursive=False)
+                       os.path.split(file_path)[0], recursive=True)
 file_observer.start()
 
 try:
