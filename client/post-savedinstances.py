@@ -21,7 +21,7 @@ config = configparser.ConfigParser()
 
 try:
     config.read('config.ini')
-    if not config.get('config', 'path_to_savedinstances_lua'):
+    if not config['config']['path_to_savedinstances_lua']:
         # this was previously used to maybe find savedinstances.lua near the client
         # pyinstaller sets sys.frozen 
         # sys._MEIPASS contains path to temp directory
@@ -34,17 +34,16 @@ try:
         #     'no path to savedinstances.lua provided, using default: %s', file_path)
         raise Exception('no path to savedinstances.lua provided')
     else:
-        file_path = config.get(
-            'config', 'path_to_savedinstances_lua')
+        file_path = config['config']['path_to_savedinstances_lua']
         logger.info('path to savedinstances.lua: %s', file_path)
 
     if not os.path.exists(file_path):
         raise Exception('savedinstances.lua path does not exist, exitting')
 
-    if not config.get('config', 'server_url'):
+    if not config['config']['server_url']:
         raise Exception('no server_url provided')
     else:
-        server_url = config.get('config', 'server_url')
+        server_url = config['config']['server_url']
         logger.info('server url: %s', server_url)
 except Exception as e:
     logger.error(e)
