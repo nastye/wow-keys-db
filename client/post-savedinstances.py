@@ -22,13 +22,17 @@ config = configparser.ConfigParser()
 try:
     config.read('config.ini')
     if not config.get('config', 'path_to_savedinstances_lua'):
-        if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-            abs_path = os.path.split(os.path.dirname(sys.executable))[0]
-        else:
-            abs_path = os.path.abspath('..')
-        file_path = os.path.join(abs_path, file)
-        logger.info(
-            'no path to savedinstances.lua provided, using default: %s', file_path)
+        # this was previously used to maybe find savedinstances.lua near the client
+        # pyinstaller sets sys.frozen 
+        # sys._MEIPASS contains path to temp directory
+        # if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+        #     abs_path = os.path.split(os.path.dirname(sys.executable))[0]
+        # else:
+        #     abs_path = os.path.abspath('..')
+        # file_path = os.path.join(abs_path, file)
+        # logger.info(
+        #     'no path to savedinstances.lua provided, using default: %s', file_path)
+        raise Exception('no path to savedinstances.lua provided')
     else:
         file_path = config.get(
             'config', 'path_to_savedinstances_lua')
