@@ -1,5 +1,5 @@
 substitutions:
-  _DOCKER_REPOSITORY: europe-docker.pkg.dev/wow-keys/wow-keys
+  _DOCKER_IMAGE: europe-docker.pkg.dev/wow-keys/wow-keys/wow-keys-server
   _DOCKER_TAG: 0.0.1
 timeout: 60s
 steps:
@@ -7,10 +7,10 @@ steps:
   args:
   - build
   - '-t'
-  - ${_DOCKER_REPOSITORY}:${_DOCKER_TAG}
+  - ${_DOCKER_IMAGE}:${_DOCKER_TAG}
   - '-f'
   - Dockerfile
   - '.'
   dir: server
 images: 
-- ${_DOCKER_REPOSITORY}:${_DOCKER_TAG}
+- ${_DOCKER_IMAGE}:${_DOCKER_TAG}
