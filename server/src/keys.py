@@ -53,36 +53,35 @@ def post_character():
         keys_model.db.connect()
 
         for toon in data['Toons'].keys():
-            if data['Toons'][toon]['Level'] == 60:
-                if data['Toons'][toon]['MythicKey'] \
-                        and data['Toons'][toon]['MythicKey']['ResetTime'] \
-                        and data['Toons'][toon]['MythicKey']['ResetTime'] > int(time.time()):
-                    character_name = toon.split(' - ')[0]
-                    character_realm = toon.split(' - ')[1]
-                    character_class = data['Toons'][toon]['Class']
-                    character_item_level = data['Toons'][toon]['ILe']
-                    if data['Toons'][toon]['MythicKey']['name']:
-                        dungeon_name = data['Toons'][toon]['MythicKey']['name']
-                        dungeon_level = data['Toons'][toon]['MythicKey']['level']
-                        dungeon_reset_time = data['Toons'][toon]['MythicKey']['ResetTime']
-                    else:
-                        dungeon_name = ' '
-                        dungeon_level = ' '
-                        dungeon_reset_time = ' '
+            if data['Toons'][toon]['MythicKey'] \
+                    and data['Toons'][toon]['MythicKey']['ResetTime'] \
+                    and data['Toons'][toon]['MythicKey']['ResetTime'] > int(time.time()):
+                character_name = toon.split(' - ')[0]
+                character_realm = toon.split(' - ')[1]
+                character_class = data['Toons'][toon]['Class']
+                character_item_level = data['Toons'][toon]['ILe']
+                if data['Toons'][toon]['MythicKey']['name']:
+                    dungeon_name = data['Toons'][toon]['MythicKey']['name']
+                    dungeon_level = data['Toons'][toon]['MythicKey']['level']
+                    dungeon_reset_time = data['Toons'][toon]['MythicKey']['ResetTime']
+                else:
+                    dungeon_name = ' '
+                    dungeon_level = ' '
+                    dungeon_reset_time = ' '
 
-                    co, created = keys_model.Character.get_or_create(
-                        character_name=character_name, character_realm=character_realm)
+                co, created = keys_model.Character.get_or_create(
+                    character_name=character_name, character_realm=character_realm)
 
-                    co.character_name = character_name
-                    co.character_realm = character_realm
-                    co.character_class = character_class
-                    co.character_item_level = character_item_level
-                    co.dungeon_name = dungeon_name
-                    co.dungeon_level = dungeon_level
-                    co.dungeon_reset_time = dungeon_reset_time
-                    updated = co.save()
+                co.character_name = character_name
+                co.character_realm = character_realm
+                co.character_class = character_class
+                co.character_item_level = character_item_level
+                co.dungeon_name = dungeon_name
+                co.dungeon_level = dungeon_level
+                co.dungeon_reset_time = dungeon_reset_time
+                updated = co.save()
 
-                    characters_added.append((toon, updated))
+                characters_added.append((toon, updated))
 
         keys_model.db.close()
 
