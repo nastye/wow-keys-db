@@ -1,0 +1,12 @@
+steps:
+- name: gcr.io/cloud-builders/docker
+  args:
+  - build
+  - '-t'
+  - europe-west3-docker.pkg.dev/wow-keys/wow-keys:1
+  - '-f'
+  - Dockerfile
+  - '.'
+  workdir: server
+images: 
+- europe-west3-docker.pkg.dev/wow-keys/wow-keys:1
