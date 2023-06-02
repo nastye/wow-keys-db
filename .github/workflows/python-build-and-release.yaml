@@ -26,7 +26,9 @@ jobs:
         pip install -r requirements.txt
     - name: Build .exe
       run: |
+        cd client
         pyinstaller --onefile --noconsole post-savedinstances.py
     - name: Create release archive
       run: |
+        cd client
         zip -r wow-keys-client-${{ env.GITHUB_REF_NAME }}.zip windows config.txt dist/post-savedinstances.exe
