@@ -16,6 +16,8 @@ def idx():
             return 'style=\"background-color:#A330C9\"'
         elif character.character_class == 'DRUID':
             return 'style=\"background-color:#FF7C0A\"'
+        elif character.character_class == 'EVOKER':
+            return 'style=\"background-color:#33937F\"'
         elif character.character_class == 'HUNTER':
             return 'style=\"background-color:#AAD372\"'
         elif character.character_class == 'MAGE':
