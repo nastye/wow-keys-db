@@ -39,4 +39,4 @@ jobs:
         prerelease: true
         automatic_release_tag: latest
         files: |
-          client/wow-keys-client-${{ env.GITHUB_REF_NAME }}.zip
+          client/wow-keys-client-${{ github.ref_name }}.zip
