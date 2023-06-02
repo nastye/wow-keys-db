@@ -31,7 +31,7 @@ jobs:
     - name: Create release archive
       run: |
         cd client
-        Compress-Archive -Path "windows", "config.txt", "dist/post-savedinstances.exe" -DestinationPath "wow-keys-client-${{ env.GITHUB_REF_NAME }}.zip"
+        Compress-Archive -Path "windows", "config.ini", "dist/post-savedinstances.exe" -DestinationPath "wow-keys-client-${{ env.GITHUB_REF_NAME }}.zip"
 
     - uses: "marvinpinto/action-automatic-releases@v1.2.1"
       with:
