@@ -1,6 +1,7 @@
 substitutions:
 - _DOCKER_REPOSITORY: europe-docker.pkg.dev/wow-keys/wow-keys
 - _DOCKER_TAG: 0.0.1
+timeout: 60s
 steps:
 - name: gcr.io/cloud-builders/docker
   args:
