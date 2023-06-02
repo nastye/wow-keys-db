@@ -3,7 +3,7 @@ FROM python:3
 WORKDIR /opt/keys
 
 ADD requirements.txt .
-ADD src/* .
+ADD src/* ./
 
 RUN apt install -y libsqlite3-dev && pip install -r requirements.txt
 
