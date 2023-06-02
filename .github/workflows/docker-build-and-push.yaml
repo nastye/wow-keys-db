@@ -1,7 +1,7 @@
 name: Docker build and push
 
 on:
-  push::
+  push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
