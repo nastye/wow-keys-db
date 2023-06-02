@@ -85,6 +85,8 @@ def post_character():
 
         keys_model.db.close()
 
+        print(str(characters_added))
+
         return str(characters_added)
     else:
         return '???'
