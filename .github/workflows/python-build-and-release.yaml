@@ -27,7 +27,8 @@ jobs:
     - name: Build .exe
       run: |
         cd client
-        pyinstaller --exclude-module _bootlocale --onefile --noconsole post-savedinstances.py
+        pyinstaller --exclude-module _bootlocale --onefile post-savedinstances.py
+      # pyinstaller --exclude-module _bootlocale --onefile --noconsole post-savedinstances.py
     - name: Create release archive
       run: |
         cd client

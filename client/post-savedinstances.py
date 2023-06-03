@@ -21,10 +21,13 @@ config_path = 'config.ini'
 if getattr(sys, 'frozen', False):
     config_path = os.path.join(os.path.dirname(sys.executable), '/config.ini')
 
+print(config_path)
+
 config = configparser.ConfigParser()
 
 try:
     config.read(config_path)
+    print(config)
     if not config['config']['path_to_savedinstances_lua']:
         # this was previously used to maybe find savedinstances.lua near the client
         # pyinstaller sets sys.frozen 
