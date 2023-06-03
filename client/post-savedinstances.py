@@ -24,7 +24,7 @@ if getattr(sys, 'frozen', False):
 config = configparser.ConfigParser()
 
 try:
-    config.read('config.ini')
+    config.read(config_path)
     if not config['config']['path_to_savedinstances_lua']:
         # this was previously used to maybe find savedinstances.lua near the client
         # pyinstaller sets sys.frozen 
@@ -51,7 +51,7 @@ try:
         logger.info('server url: %s', server_url)
 except Exception as e:
     logger.error(e)
-    exit(1)
+    sys.exit(1)
 
 
 def post_file():
