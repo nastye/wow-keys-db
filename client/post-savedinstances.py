@@ -17,6 +17,10 @@ file = 'SavedInstances.lua'
 server_url = ''
 file_path = ''
 
+config_path = 'config.ini'
+if getattr(sys, 'frozen', False):
+    config_path = os.path.join(os.path.dirname(sys.executable), '/config.ini')
+
 config = configparser.ConfigParser()
 
 try:
